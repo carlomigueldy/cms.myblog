@@ -14,9 +14,9 @@
     <div id="app">
         @include('inc.nav')
         <div class="container">
+            
             <div class="row">
                 
-                @if(Auth::check())
                 <div class="col-lg-4">
                     @include('inc.sidenav')
                 </div>
@@ -26,16 +26,10 @@
                         @yield('content')
                     </main>
                 </div>
-                @endif
 
             </div>
-        </div>
 
-        @guest
-        <main class="py-4">
-            @yield('content')
-        </main>   
-        @endguest
+        </div>
     </div>
 </body>
 </html>
