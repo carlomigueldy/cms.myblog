@@ -16,7 +16,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::paginate(5);
+
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -26,7 +28,16 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create')->with('categories', Category::all());
+        $categories = Category::all();
+
+        if($categories->count() == 0)
+        {
+            Session::flash('info', 'You must add a category before attempting to add a post.');
+
+            return redirect()->back();
+        }
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -41,7 +52,7 @@ class PostsController extends Controller
             'title' => 'required|max:255',
             'featured' => 'required|image',
             'content' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
         ]);
 
         $featured = $request->featured;
@@ -52,12 +63,13 @@ class PostsController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'featured' => 'uploads/posts/' . $featured_new_name,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'slug' => str_slug($request->title)
         ]);
 
         Session::flash('success', 'Post created successfully!');
 
-        return redirect()->route('posts.create');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -102,6 +114,11 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        Session::flash('success', 'You have successfully deleted a post.');
+
+        return redirect()->route('posts.index');
     }
 }

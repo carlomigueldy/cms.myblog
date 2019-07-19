@@ -16,11 +16,11 @@
         <div class="container">
             <div class="row">
                 @if(Auth::check())
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     @include('inc.sidenav')
                 </div>
 
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <main class="py-4">
                         @yield('content')
                     </main>
@@ -43,8 +43,8 @@
             toastr.success("{{ Session::get('success') }}")
         @endif
 
-        @if(Session::has('error'))
-            toastr.error("{{ Session::get('error') }}")
+        @if(Session::has('info'))
+            toastr.info("{{ Session::get('info') }}")
         @endif
     </script>
 </body>
