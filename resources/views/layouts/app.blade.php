@@ -15,7 +15,6 @@
         @include('inc.nav')
         <div class="container">
             <div class="row">
-                
                 @if(Auth::check())
                 <div class="col-lg-4">
                     @include('inc.sidenav')
@@ -27,7 +26,6 @@
                     </main>
                 </div>
                 @endif
-
             </div>
         </div>
 
