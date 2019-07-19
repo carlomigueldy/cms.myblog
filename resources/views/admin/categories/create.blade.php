@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('inc.messages')
+    @include('admin.inc.messages')
 
     <div class="card bg-default">
         <div class="card-header">Create a New Category</div>

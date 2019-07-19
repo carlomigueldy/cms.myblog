@@ -45,18 +45,7 @@ class CategoriesController extends Controller
         $category->name = $request->input('name');
         $category->save();
 
-        return view('admin.categories.create');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -89,7 +78,7 @@ class CategoriesController extends Controller
         $category->name = $request->input('name');
         $category->save();
 
-        return view('admin.categories.index')->with('categories', Category::paginate(5));
+        return redirect()->route('categories.index');
     }
 
     /**
