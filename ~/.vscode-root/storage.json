@@ -1383,5 +1383,19 @@
         }
     },
     "theme": "vs-dark",
-    "themeBackground": "#212121"
+    "themeBackground": "#212121",
+    "windowsState": {
+        "lastActiveWindow": {
+            "folder": "file:///home/carlomigueldy/myprojects/blog",
+            "backupPath": "/home/carlomigueldy/myprojects/blog/~/.vscode-root/Backups/b9303e57162f314c141f0ca4398f8b43",
+            "uiState": {
+                "mode": 1,
+                "x": 171,
+                "y": 57,
+                "width": 1024,
+                "height": 678
+            }
+        },
+        "openedWindows": []
+    }
 }

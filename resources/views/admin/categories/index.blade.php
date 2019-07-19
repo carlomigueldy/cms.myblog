@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card">
-    <table class="table table-hover">
-        <thead>
+<div class="card mb-2">
+    <div class="card-header pb-0">
+        <h3 class="float-left">Categories</h3>
+        <a href="{{ route('categories.create') }}" class="btn float-right">Add Category</a>
+    </div>
+    <table class="table table-hover mb-0">
+        <thead class="text-center">
             <th>Name</th>
             <th>Action</th>
         </thead>
@@ -11,10 +15,12 @@
             @foreach($categories as $category)
                 <tr>
                     <td>{{ $category->name }}</td>
-                    <td>
+                    <td class="text-center">
                         <form action="{{ route('categories.destroy', $category->id) }}" method="post">
-                            @method('_DELETE')
-                            <button type="submit" class="btn">Remove</button>
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <button type="submit" class="btn btn-sm">Remove</button>
                         </form>
                     </td>
                 </tr>
@@ -22,4 +28,5 @@
         </tbody>
     </table>
 </div>
+{{ $categories->links() }}
 @stop
