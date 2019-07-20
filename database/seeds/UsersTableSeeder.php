@@ -11,10 +11,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        App\User::create([
+        $user = App\User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('password')
+            'admin' => true,
+            'password' => bcrypt('password'),
+        ]);
+
+        App\Profile::create([
+            'user_id' => $user->id,
+            'avatar' => '',
+            'about' => 'This is the Super-Administrator and has all access.',
+            'github' => 'https://github.com/carlomigueldy'
         ]);
     }
 }

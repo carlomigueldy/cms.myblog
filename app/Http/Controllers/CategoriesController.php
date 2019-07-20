@@ -129,4 +129,12 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index');
     }
+
+    public function posts($id)
+    {
+        $posts = Category::find($id)->posts;
+        $category = Category::find($id);
+
+        return view('admin.categories.posts', compact('posts', 'category'));
+    }
 }

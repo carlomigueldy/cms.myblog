@@ -16,6 +16,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::resource('posts', 'PostsController');
 
     // Categories Table
+    Route::get('category/posts/{id}', 'CategoriesController@posts')->name('categories.posts');
     Route::get('category/restore/{id}', 'CategoriesController@restore')->name('categories.restore');
     Route::get('category/delete/{id}', 'CategoriesController@delete')->name('categories.delete');
     Route::resource('categories', 'CategoriesController');

@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <table class="table table-hover">
-                <thead>
+                <thead class="text-center">
                     <th>Name</th>
                     <th>Action</th>
                 </thead>
@@ -18,12 +18,12 @@
                     @foreach($tags as $tag)
                         <tr>
                             <td>{{ $tag->name }}</td>
-                            <td>
+                            <td class="text-center">
                                 <form action="{{ route('tags.destroy', $tag->id) }}" method="post">
                                     @csrf 
                                     @method('DELETE')
                                     <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <button type="submit" class="btn btn-sm">Remove</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
                                 </form>
                             </td>
                         </tr>

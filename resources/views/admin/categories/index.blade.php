@@ -22,8 +22,9 @@
                                     <form action="{{ route('categories.destroy', $category->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
+                                        <a href="{{ route('categories.posts', $category->id) }}" class="btn btn-secondary btn-sm">Posts</a>
                                         <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                        <button type="submit" class="btn btn-sm">Remove</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
                                     </form>
                                 </td>
                             </tr>
