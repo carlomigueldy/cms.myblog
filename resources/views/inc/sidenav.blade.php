@@ -9,3 +9,9 @@
                 <a href="{{ route('categories.index') }}">Categories</a>
         </li>
 </ul>
+
+<ul class="list-group mt-4">
+        <li class="list-group-item">
+                <a href="{{ route('posts.trashed') }}">Trashed Posts</a>
+        </li>
+</ul>

@@ -121,4 +121,32 @@ class PostsController extends Controller
 
         return redirect()->route('posts.index');
     }
+
+    public function trashed()
+    {
+        $posts = Post::onlyTrashed()->paginate(5);
+
+        return view('admin.posts.trashed', compact('posts'));
+    }
+
+    public function restore($id)
+    {
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->deleted_at = null;
+        $post->save();
+
+        Session::flash('success', 'The post was restored.');
+
+        return redirect()->route('posts.trashed');
+    }
+    
+    public function delete($id)
+    {
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->forceDelete();
+
+        Session::flash('success', 'The post was permanently deleted.');
+
+        return redirect()->route('posts.trashed');
+    }
 }

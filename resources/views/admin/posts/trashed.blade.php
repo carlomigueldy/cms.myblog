@@ -3,8 +3,7 @@
 @section('content')
 <div class="card mb-2">
     <div class="card-header">
-        <div class="float-left">Posts</div>
-        <a href="{{ route('posts.create') }}" class="float-right">Add New Post</a>
+        <div class="float-left">Trashed Posts</div>
     </div>
     <div class="card-body">
         <table class="table table-hover mb-0">
@@ -22,18 +21,14 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->category->name }}</td>
                             <td class="text-center">
-                                <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <button type="submit" class="btn btn-sm">Remove</button>
-                                </form>
+                                <a href="{{ route('posts.restore', $post->id) }}" class="btn m-1">Restore</a>
+                                <a href="{{ route('posts.delete', $post->id) }}" class="btn m-1">Delete</a>
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td class="alert alert-primary text-center" colspan="4">No posts yet.</td>
+                        <td class="alert alert-primary text-center" colspan="4">No trashed posts yet.</td>
                     </tr>
                 @endif
             </tbody>
