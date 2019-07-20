@@ -34,7 +34,9 @@
         </div>
         {{ $categories->links() }}
     @else
-        <div class="alert alert-primary"><h3 class="text-center pt-2">No categories yet.</h3></div>
+        <div class="alert alert-info">
+            <p class="pt-3">No categories added yet. Click <a href="{{ route('categories.create') }}">here</a> to add.</p>
+        </div>
     @endif
 
     @if(count($trashed) > 0)

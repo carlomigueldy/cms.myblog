@@ -38,7 +38,9 @@
         </div>
         {{ $posts->links() }}
     @else
-        <div class="alert alert-primary"><h3 class="text-center pt-2">No posts yet.</h3></div>
+        <div class="alert alert-info">
+            <p class="pt-3">No posts added yet. Click <a href="{{ route('posts.create') }}">here</a> to add.</p>
+        </div>
     @endif
 
 @stop
