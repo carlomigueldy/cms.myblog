@@ -120,7 +120,7 @@ class PostsController extends Controller
             $featured_new_name = time().$featured->getClientOriginalName();
             $featured->move('uploads/posts', $featured_new_name);
 
-            $post->featured = $featured_new_name;
+            $post->featured = 'uploads/posts/' . $featured_new_name;
         }
 
         $post->title = $request->title;
