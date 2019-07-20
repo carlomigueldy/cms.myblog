@@ -91,7 +91,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -103,7 +106,32 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        $post = Post::find($id);
+
+        if($request->hasFile('featured'))
+        {
+            $featured = $request->featured;
+            $featured_new_name = time().$featured->getClientOriginalName();
+            $featured->move('uploads/posts', $featured_new_name);
+
+            $post->featured = $featured_new_name;
+        }
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->category_id = $request->category_id;
+        $post->slug = str_slug($request->title);
+        $post->save();
+
+        Session::flash('success', 'The Post has been updated successfully!');
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -122,6 +150,9 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
+    /* 
+        A list of trashed posts.
+    */
     public function trashed()
     {
         $posts = Post::onlyTrashed()->paginate(5);
@@ -129,6 +160,10 @@ class PostsController extends Controller
         return view('admin.posts.trashed', compact('posts'));
     }
 
+    /* 
+        This function restores a trashed post back
+        into the index page or list of posts.
+    */
     public function restore($id)
     {
         $post = Post::withTrashed()->where('id', $id)->first();
@@ -140,6 +175,9 @@ class PostsController extends Controller
         return redirect()->route('posts.trashed');
     }
     
+    /* 
+        This function deletes the trashed post.
+    */
     public function delete($id)
     {
         $post = Post::withTrashed()->where('id', $id)->first();

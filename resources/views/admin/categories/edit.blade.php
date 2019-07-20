@@ -4,7 +4,7 @@
     @include('admin.inc.messages')
 
     <div class="card bg-default">
-        <div class="card-header">Edit Category</div>
+        <div class="card-header">Edit Category: {{ $category->name }}</div>
         <div class="card-body">
             <form action="{{ route('categories.update', $category->id) }}" method="post">
                 {{ csrf_field() }}
