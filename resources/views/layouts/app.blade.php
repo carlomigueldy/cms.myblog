@@ -16,11 +16,11 @@
         <div class="container">
             <div class="row">
                 @if(Auth::check())
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     @include('inc.sidenav')
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-10">
                     <main class="py-4">
                         @yield('content')
                     </main>

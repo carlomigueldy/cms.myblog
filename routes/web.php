@@ -12,5 +12,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('post/restore/{id}', 'PostsController@restore')->name('posts.restore');
     Route::get('post/delete/{id}', 'PostsController@delete')->name('posts.delete');
     Route::resource('posts', 'PostsController');
+    Route::get('category/restore/{id}', 'CategoriesController@restore')->name('categories.restore');
+    Route::get('category/delete/{id}', 'CategoriesController@delete')->name('categories.delete');
     Route::resource('categories', 'CategoriesController');
 });

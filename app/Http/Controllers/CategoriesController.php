@@ -16,8 +16,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::paginate(5);
+        $trashed = Category::onlyTrashed()->paginate(5);
 
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories', 'trashed'));
     }
 
     /**
@@ -98,6 +99,33 @@ class CategoriesController extends Controller
         $category->delete();
 
         Session::flash('success', 'You have successfully deleted the category.');
+
+        return redirect()->route('categories.index');
+    }
+
+    /* 
+        Restores a trashed category.
+    */
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->where('id', $id)->first();
+        $category->deleted_at = null;
+        $category->save();
+
+        Session::flash('success', 'You have restored a category from trash.');
+
+        return redirect()->route('categories.index');
+    }
+
+    /* 
+        Permanently deletes a category from trash.
+    */
+    public function delete($id)
+    {
+        $category = Category::withTrashed()->where('id', $id)->first();
+        $category->forceDelete();
+
+        Session::flash('success', 'You have deleted a category permanently.');
 
         return redirect()->route('categories.index');
     }
