@@ -23,7 +23,7 @@
                                     <img src="{{ asset($user->profile->avatar) }}" alt="{{ $user->name }}" width="50px" height="50px" style="border-radius: 50%;">
                                 </td>
                                 <td>{{ $user->name }}</td>
-                                @if($user->admin == true)
+                                @if($user->admin)
                                     <td>
                                         <a href="#" class="btn btn-secondary btn-sm">Revoke</a>
                                     </td>

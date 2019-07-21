@@ -2,12 +2,14 @@
         <li class="list-group-item">
                 <a href="{{ route('home') }}">Home</a>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ route('users.index') }}">Users</a>
-                @if(count(App\User::all()) > 0)
-                        <span class="badge badge-primary badge-pill">{{ App\User::count() }}</span>
-                @endif
-        </li>
+        @if(Auth::user()->admin)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="{{ route('users.index') }}">Users</a>
+                        @if(count(App\User::all()) > 0)
+                                <span class="badge badge-primary badge-pill">{{ App\User::count() }}</span>
+                        @endif
+                </li>
+        @endif
         <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href="{{ route('posts.index') }}">Posts</a>
                 @if(count(App\Post::all()) > 0)
