@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
 
         App\Profile::create([
             'user_id' => $user->id,
-            'avatar' => '',
+            'avatar' => 'uploads/avatars/carlomigueldy.jpg',
             'about' => 'This is the Super-Administrator and has all access.',
             'github' => 'https://github.com/carlomigueldy'
         ]);
