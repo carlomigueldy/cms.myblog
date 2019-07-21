@@ -53,6 +53,7 @@ class UsersController extends Controller
 
         Profile::create([
             'user_id' => $user->id,
+            'avatar' => 'uploads/avatars/def-avatar.svg'
         ]);
 
         Session::flash('success', 'A user has been created successfully.');
