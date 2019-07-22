@@ -2,6 +2,9 @@
         <li class="list-group-item">
                 <a href="{{ route('home') }}">Home</a>
         </li>
+        <li class="list-group-item">
+                <a href="{{ route('profile.edit') }}">My profile</a>
+        </li>
         @if(Auth::user()->admin)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="{{ route('users.index') }}">Users</a>

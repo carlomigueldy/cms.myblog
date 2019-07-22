@@ -9,9 +9,13 @@ Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
 
+    // Users Table
     Route::get('users/restore/{id}', 'UsersController@restore')->name('users.restore');
     Route::get('users/delete/{id}', 'UsersController@delete')->name('users.delete');
+    Route::get('user/profile', 'ProfilesController@edit')->name('profile.edit');
+    Route::put('user/profile/update', 'ProfilesController@update')->name('profile.update');
     Route::resource('users', 'UsersController');
+
 
     // Posts Table
     Route::get('posts/trashed', 'PostsController@trashed')->name('posts.trashed');
